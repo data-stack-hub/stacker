@@ -1,4 +1,5 @@
 import click
+from stacker.stacker import Stacker
 
 @click.group()
 def stacker():
@@ -9,3 +10,4 @@ def stacker():
 @click.argument('project_name')
 def init(project_name):
     print(f"Initializing project: {project_name}")
+    Stacker().init(project_name)

@@ -1,0 +1,51 @@
+# Python-related
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Editor specific
+.idea/
+.vscode/
+
+# Build and Distribution
+build/
+dist/
+*.egg-info/
+
+# Unit test / coverage reports
+.coverage
+*.cover
+nosetests.xml
+coverage.xml
+*.hypothesis/
+
+# PyInstaller
+*.spec
+
+# MyPy
+.mypy_cache/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Log files
+*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# pytest cache
+.cache/
+
+# Python virtual environments
+venv/
+env/

@@ -1,0 +1,44 @@
+/* src/components/Dashboard.css */
+
+/* Container for the entire dashboard */
+.dashboard-container {
+    padding: 20px;
+    background-color: #f4f7fc;
+  }
+  
+  /* React Grid Layout styling */
+  .layout {
+    background: #fafafa;
+    border: 1px solid #ddd;
+  }
+  
+  /* Styling for individual widgets/cards */
+  .dashboard-widget {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: black 1px solid;
+
+  }
+  
+  /* Widget title styling */
+  .dashboard-widget h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  /* Widget content styling */
+  .dashboard-widget p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+ 
+  

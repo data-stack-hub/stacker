@@ -6,21 +6,9 @@ import ReactGridLayout from 'react-grid-layout';
 import Chart from './Chart';
 import './Dashboard.css';  // Assuming you've created this file for styling
 
-const Dashboard: React.FC = () => {
-  const layout = [
-    { i: 'a', x: 0, y: 0, w: 4, h: 3, minW: 2, minH: 2 },
-    { i: 'b', x: 4, y: 0, w: 6, h: 3, minW: 2, minH: 2 },
-    { i: 'c', x: 0, y: 3, w: 2, h: 3, minW: 2, minH: 2 },
-    { i: 'd', x: 2, y: 3, w: 2, h: 3, minW: 2, minH: 2 },
-    { i: 'e', x: 4, y: 3, w: 4, h: 3, minW: 2, minH: 2 },
-  ];
 
-  // Sample data for the uPlot chart
-  const data = [
-    [1, 2, 3, 4, 5],  // x-axis data (time or categories)
-    [1, 2, 3, 4, 5],  // First data series
-    [5, 4, 3, 2, 1],  // Second data series
-  ];
+const Dashboard: React.FC = () => {
+
 
   // uPlot chart options
   const options: uPlot.Options = {
@@ -35,6 +23,11 @@ const Dashboard: React.FC = () => {
       { stroke: '#333', grid: { stroke: '#ddd' }, ticks: { stroke: '#333' }, side: 1 },
     ],
   };
+  const layout = [
+    { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
+    { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
+    { i: "c", x: 4, y: 0, w: 1, h: 2 }
+  ];
 
   return (
     <div className="dashboard-container">
@@ -53,7 +46,7 @@ const Dashboard: React.FC = () => {
           <p>Some content for widget 1...</p>
         </div>
         <div key="b" className="dashboard-widget">
-          <Chart title="Sample Chart" data={data} options={options} />
+          {/* <Chart title="Sample Chart" data={data} options={options} /> */}
         </div>
         <div key="c" className="dashboard-widget">
           <h3>Widget 3</h3>

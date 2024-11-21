@@ -8,9 +8,10 @@ class HttpService {
   constructor() {
     // Create an axios instance with default configuration
     this.axiosInstance = axios.create({
-      baseURL: 'http://127.0.0.1:8000', // Your FastAPI backend URL
+      baseURL: 'http://127.0.0.1:3000', // Your FastAPI backend URL
       headers: {
         'Content-Type': 'application/json',
+        "Prefer": "resolution=merge-duplicates", 
       },
     });
   }
@@ -38,7 +39,7 @@ class HttpService {
   // Method to handle PUT requests
   async put<T>(url: string, payload: any) {
     try {
-      const response: AxiosResponse<T> = await this.axiosInstance.put(url, payload);
+      const response: AxiosResponse<T> = await this.axiosInstance.patch(url, payload);
       return { data: response.data, status: response.status };
     } catch (error:any) {
       return this.handleError(error);

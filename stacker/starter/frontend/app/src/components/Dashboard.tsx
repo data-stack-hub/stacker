@@ -1,36 +1,61 @@
 // src/components/Dashboard.tsx
 // @ts-nocheck
 // src/components/Dashboard.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactGridLayout from 'react-grid-layout';
 import Chart from './Chart';
 import './Dashboard.css';  // Assuming you've created this file for styling
+import { Button } from '@/components/ui/button';
+import httpService from '@/services/httpService';
 
 
 const Dashboard: React.FC = () => {
 
+  const get_dash = () =>{
+    httpService.get('dashboard?uid=eq.main_dash&limit=1').then((res:any)=>{
+      console.log(JSON.parse(res.data[0].slug))
+      setLayout(JSON.parse(res.data[0].slug))
+    })
+  }
 
-  // uPlot chart options
-  const options: uPlot.Options = {
+  useEffect(() => {
+    get_dash();  // Get the dashboard data on component mount
+  }, []);
+const save = () =>{
 
+  httpService.get('/dashboard').then(res=>{
+    console.log(res)
+  })
 
-    series: [
-      { label: 'Series 1', stroke: 'blue', width: 2 },
-      { label: 'Series 2', stroke: 'red', width: 2 },
-    ],
-    axes: [
-      { stroke: '#333', grid: { stroke: '#ddd' }, ticks: { stroke: '#333' } },
-      { stroke: '#333', grid: { stroke: '#ddd' }, ticks: { stroke: '#333' }, side: 1 },
-    ],
-  };
-  const layout = [
-    { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
-    { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-    { i: "c", x: 4, y: 0, w: 1, h: 2 }
-  ];
+  console.log(layout)
+
+  httpService.put('/dashboard', {
+    id:1,
+slug:layout,
+uid: "main_dash",
+url: "/",
+version: 2
+
+  })
+  console.log('saving dashboard')
+}
+
+const [layout, setLayout] = useState([
+  { i: "a", x: 0, y: 0, w: 1, h: 2, static: true },
+  { i: "b", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
+  { i: "c", x: 4, y: 0, w: 1, h: 2 },
+]);
+
+const onLayoutChange = (newLayout: any) => {
+  setLayout(newLayout);
+};
 
   return (
-    <div className="dashboard-container">
+    <>
+    <div>
+      <Button onClick={save}> save</Button>
+    </div>
+        <div className="dashboard-container">
       <ReactGridLayout
         className="layout"
         layout={layout}
@@ -40,6 +65,7 @@ const Dashboard: React.FC = () => {
         isDraggable={true}
         isResizable={true}
         useCSSTransforms={true}
+        onLayoutChange={onLayoutChange}
       >
         <div key="a" className="dashboard-widget">
           <h3>Widget 1</h3>
@@ -62,6 +88,8 @@ const Dashboard: React.FC = () => {
         </div>
       </ReactGridLayout>
     </div>
+    </>
+
   );
 };
 
